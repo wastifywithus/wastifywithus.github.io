@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<!-- ===== HEAD ===== -->
+<head>
+  <link rel="icon" href="favicon.ico">
+
+<!-- Meta -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- Title -->
+<title>WASTIFY – Sampah Terpantau, Plastik Kembali Bernilai</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+<!-- ===== STYLES ===== -->
+<style>
+/* Theme */
+:root{--n:#0A2540;--b:#2563EB;--s:#38BDF8;--a:#F59E0B;--r:#EF4444;--bg:#F3F7FE;--card:#fff;--tx:#0f1f35;--mu:#5d6c80;--ln:#dde6f3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+/* Dark Mode */
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1424;--card:#111e33;--tx:#e6eefb;--mu:#93a5c0;--ln:#1f3050;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a1424;--card:#111e33;--tx:#e6eefb;--mu:#93a5c0;--ln:#1f3050;color-scheme:dark}
+
+ /* Base */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--n)}
+h1,h2,h3{line-height:1.15;margin:0 0 .5em}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+/* Navigation */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--n)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;color:#fff;text-decoration:none;letter-spacing:.04em}
+.logo img{width:40px;height:40px;object-fit:contain;position:relative;top:-3px;}
+.logo em{color:var(--s);font-style:normal}
+.menu{display:none;gap:22px}.menu a{color:#b8c9e6;text-decoration:none;font-size:.88rem;font-weight:600}
+@media(min-width:780px){.menu{display:flex}}
+
+/* Buttons */
+.btn{display:inline-block;padding:12px 22px;border-radius:12px;font-weight:700;text-decoration:none;font-size:.92rem;border:0;cursor:pointer;font-family:inherit}
+.btn-p{background:var(--s);color:var(--n)}.btn-l{border:1.5px solid #5b7bb0;color:#fff}.btn-s{background:var(--b);color:#fff;padding:9px 16px}
+
+/* Hero */
+.hero{background:var(--n);color:#fff;padding:48px 0 64px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.35),transparent 70%)}
+.hero .wrap{display:grid;gap:36px;position:relative}
+@media(min-width:820px){.hero .wrap{grid-template-columns:1.1fr .9fr;align-items:center}}
+.kick{display:inline-block;background:rgba(56,189,248,.15);color:var(--s);padding:5px 12px;border-radius:8px;font-size:.78rem;font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(2rem,6vw,3.1rem);font-weight:800}
+.hero h1 span{color:var(--s)}
+.hero p{color:#b8c9e6;max-width:520px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+/* Live Capacity Card */
+.gauge{background:linear-gradient(160deg,#12345f,#0d2a4d);border:1px solid #24497d;border-radius:22px;padding:22px}
+.gauge .row{display:flex;gap:18px;align-items:center}
+.tank{width:84px;height:130px;border:3px solid var(--s);border-radius:12px 12px 16px 16px;position:relative;overflow:hidden;flex:none}
+.tank i{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(var(--s),var(--b));transition:height 1s,background .4s}
+.gauge b{font-size:2.4rem;display:block;line-height:1}.gauge small{color:#9db6da}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;color:#7dd3fc}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--r);animation:p 1.2s infinite}
+@keyframes p{50%{opacity:.3}}
+
+/* Shared Section */
+section{padding:60px 0}
+h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800}
+.lead{color:var(--mu);max-width:600px;margin-bottom:28px}
+
+/* Facts */
+.band{background:var(--n);color:#fff}.band .lead{color:#9db6da}
+.chips{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:26px}
+.chip{background:#12345f;border-radius:14px;padding:14px}
+.chip small{color:#9db6da;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em}
+.chip b{display:block;font-size:1.45rem;color:var(--s)}
+.hb{margin-bottom:16px}.hb .r{display:flex;justify-content:space-between;font-size:.9rem;font-weight:600;margin-bottom:6px}
+.hb .t{height:14px;background:#1b3e6d;border-radius:8px;overflow:hidden}.hb .t i{display:block;height:100%;border-radius:8px;width:0;transition:width 1.4s}
+.src{font-size:.78rem;color:#7f9bc4;margin-top:16px}
+
+/* Solution */
+.bento{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:760px){.bento{grid-template-columns:repeat(3,1fr)}.bento .big{grid-column:span 2;grid-row:span 2}}
+.bc{background:var(--card);border:1px solid var(--ln);border-radius:20px;padding:22px}
+.bc .ic{font-size:1.7rem;width:50px;height:50px;border-radius:14px;background:var(--bg);display:grid;place-items:center;margin-bottom:12px}
+.bc p{color:var(--mu);margin:0;font-size:.93rem}.bc h3{font-size:1.1rem}
+.big{background:linear-gradient(150deg,var(--b),#1e40af);color:#fff;border:0}.big p{color:#dbe7ff}.big .ic{background:rgba(255,255,255,.18)}
+
+/* Workflow */
+.rail{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.rs{flex:0 0 220px;scroll-snap-align:start;background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:18px;position:relative}
+.rs span{font-size:2.4rem;font-weight:800;color:var(--s);line-height:1}.rs b{display:block;margin:6px 0 4px}.rs p{margin:0;color:var(--mu);font-size:.86rem}
+
+/* Dashboard */
+.app{background:var(--card);border:1px solid var(--ln);border-radius:20px;overflow:hidden;box-shadow:0 14px 40px rgba(10,37,64,.15)}
+.ah{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:14px 18px;background:var(--n);color:#fff}
+.seg{display:inline-flex;background:#12345f;border-radius:10px;padding:3px}
+.seg button{border:0;background:none;color:#9db6da;font:600 .78rem inherit;font-family:inherit;padding:7px 12px;border-radius:8px;cursor:pointer}
+.seg button.on{background:var(--s);color:var(--n)}
+.tabs{display:flex;border-bottom:1px solid var(--ln);overflow-x:auto}
+.tabs button{flex:1;min-width:110px;border:0;background:none;color:var(--mu);font:700 .86rem inherit;font-family:inherit;padding:14px;cursor:pointer;border-bottom:3px solid transparent;position:relative}
+.tabs button.on{color:var(--b);border-color:var(--b)}
+.badge{background:var(--r);color:#fff;border-radius:99px;font-size:.68rem;padding:1px 7px;margin-left:5px}
+.pane{display:none;padding:18px}.pane.on{display:block}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.kpi div{background:var(--bg);border-radius:12px;padding:10px;text-align:center}.kpi b{display:block;font-size:1.4rem;color:var(--b)}.kpi small{color:var(--mu);font-size:.72rem}
+.bi{margin-bottom:12px}.bi .r{display:flex;justify-content:space-between;font-size:.88rem;font-weight:600}
+.bar{height:10px;background:var(--ln);border-radius:8px;overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;border-radius:8px;transition:width .8s,background .4s}
+.nt{display:flex;gap:10px;background:var(--bg);border-left:4px solid var(--r);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.86rem}
+.nt.ok{border-color:var(--b)}.nt small{color:var(--mu);display:block}
+.empty{color:var(--mu);text-align:center;padding:20px;font-size:.9rem}
+.jd{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--bg);border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:.88rem}
+.jd button{background:var(--b);color:#fff;border:0;border-radius:8px;padding:7px 12px;font:700 .78rem inherit;font-family:inherit;cursor:pointer}
+.tag{font-size:.72rem;background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:99px;font-weight:700}
+
+/* Search Toolbar */
+.toolbar{display:flex;align-items:center;gap:16px;padding:16px 18px;box-sizing:border-box}
+.toolbar input{flex:1;min-width:0;height:46px;padding:0 16px;border:1px solid var(--ln);border-radius:14px;background:var(--bg);color:var(--tx);font:inherit;outline:none}
+.toolbar select{width:180px;flex-shrink:0;height:46px;padding:0 14px;border:1px solid var(--ln);border-radius:14px;background:var(--bg);color:var(--tx);font:inherit;outline:none}
+.toolbar input:focus,.toolbar select:focus{border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.15)}
+
+/* Popup Notification */
+#toasts{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;display:grid;gap:8px;max-width:310px}
+.toast{background:var(--n);color:#fff;border-left:5px solid var(--r);border-radius:12px;padding:12px 14px;font-size:.84rem;box-shadow:0 10px 30px rgba(0,0,0,.3);animation:in .35s}
+@keyframes in{from{transform:translateX(30px);opacity:0}}
+
+/* Circular Economy */
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.flow div{background:var(--card);border:1.5px solid var(--b);border-radius:10px;padding:10px 14px;font-weight:700;font-size:.88rem}.flow span{color:var(--b);font-weight:800}
+
+/* Business Model */
+.cols{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.cols .bc{border-top:4px solid var(--b)}
+
+/* Footer */
+footer{background:var(--n);color:#9db6da;padding:30px 20px;text-align:center;font-size:.86rem}footer b{color:#fff;font-size:1.15rem}
+
+/* Animation */
+.fade{opacity:0;transform:translateY(16px);transition:.6s}.fade.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+
+<!-- ===== BODY ===== -->
+<body>
+<!-- Navigation -->
+<nav><div class="wrap"><a class="logo" href="#top"><img src="Wastify Logo.png" alt="Logo Wastify"><span>WASTI<em>FY</em></span></a>
+<div class="menu"><a href="#fakta">Fakta</a><a href="#solusi">Solusi</a><a href="#cara">Cara Kerja</a><a href="#dashboard">Dashboard</a><a href="#bisnis">Bisnis</a></div>
+<a class="btn btn-s" href="#kontak">Hubungi Kami</a></div></nav>
+
+<!-- Hero -->
+<header class="hero" id="top"><div class="wrap">
+<div><span class="kick">Smart waste · Ekonomi sirkular</span>
+<h1>Sampah <span>terpantau</span>, angkutan terjadwal, plastik kembali bernilai.</h1>
+<p>WASTIFY memasang tempat sampah daur ulang bersensor load cell di desa dan kampung, lalu mengatur pengangkutan lewat data real-time.</p>
+<div class="btns"><a class="btn btn-p" href="#dashboard">Coba Dashboard Demo</a><a class="btn btn-l" href="#solusi">Kenali WASTIFY</a></div></div>
+<div class="gauge"><span class="live">LIVE · simulasi</span>
+<div class="row" style="margin-top:12px"><div class="tank"><i id="gt" style="height:40%"></i></div>
+<div><small>Kapasitas tempat sampah</small><b id="gp">40%</b><small id="gw">48 kg dari 120 kg</small></div></div></div>
+</div></header>
+
+<!-- Facts -->
+<section class="band" id="fakta"><div class="wrap fade">
+<h2>Kondisi sampah nasional</h2><p class="lead">Data resmi SIPSN KLH menunjukkan pengelolaan sampah masih jauh dari target 100%.</p>
+<div class="chips"><div class="chip"><small>Jumlah TPA</small><b>506</b></div><div class="chip"><small>Kab/Kota</small><b>514</b></div><div class="chip"><small>Penduduk</small><b>275.899.540</b></div><div class="chip"><small>Koefisien</small><b>0,48</b></div><div class="chip"><small>Rasio APBD</small><b>1,98%</b></div></div>
+<div class="hb"><div class="r"><span>Sampah terkelola</span><span>25%</span></div><div class="t"><i data-w="25" style="background:var(--r)"></i></div></div>
+<div class="hb"><div class="r"><span>Progres sanksi administrasi</span><span>49%</span></div><div class="t"><i data-w="49" style="background:var(--a)"></i></div></div>
+<div class="hb"><div class="r"><span>Verifikasi lapangan (488 dari 514)</span><span>94%</span></div><div class="t"><i data-w="94" style="background:var(--s)"></i></div></div>
+<p class="src">Sumber: SIPSN Kementerian Lingkungan Hidup, data terverifikasi update 2026.</p>
+</div></section>
+
+<!-- Solution -->
+<section id="solusi"><div class="wrap fade">
+<h2>Satu sistem, dari titik sampah sampai daur ulang</h2><p class="lead">Layanan pengangkutan terintegrasi yang bekerja sama langsung dengan desa atau kampung.</p>
+<div class="bento">
+<div class="bc big"><div class="ic">📡</div><h3>Sensor load cell + dashboard</h3><p>Berat sampah dipantau berkala dan dikirim ke dashboard. Tim pengelola langsung tahu tempat sampah mana yang hampir penuh, tanpa keliling mengecek satu per satu.</p></div>
+<div class="bc"><div class="ic">♻️</div><h3>Plastik daur ulang</h3><p>Tempat sampah dibuat dari plastik daur ulang.</p></div>
+<div class="bc"><div class="ic">🔔</div><h3>Notifikasi batas</h3><p>Peringatan otomatis saat kapasitas mencapai batas.</p></div>
+<div class="bc"><div class="ic">🚛</div><h3>Angkut terjadwal</h3><p>Rute dan jadwal disusun dari data kapasitas.</p></div>
+<div class="bc"><div class="ic">🏭</div><h3>Mitra daur ulang</h3><p>Sampah disalurkan sesuai jenis dan potensinya.</p></div>
+</div></div></section>
+
+<!-- Workflow -->
+<section style="background:var(--card)" id="cara"><div class="wrap fade">
+<h2>Cara kerja</h2><p class="lead">Geser untuk melihat 5 langkah.</p>
+<div class="rail">
+<div class="rs"><span>1</span><b>Kerja sama desa</b><p>Kesepakatan titik penempatan dengan desa/kampung.</p></div>
+<div class="rs"><span>2</span><b>Pemasangan</b><p>Tempat sampah plastik daur ulang + load cell dipasang.</p></div>
+<div class="rs"><span>3</span><b>Pemantauan berat</b><p>Data berat terkirim berkala ke dashboard.</p></div>
+<div class="rs"><span>4</span><b>Notifikasi &amp; jadwal</b><p>Kapasitas penuh memicu notifikasi dan penjadwalan.</p></div>
+<div class="rs"><span>5</span><b>Angkut &amp; salurkan</b><p>Dibawa ke mitra pemilahan dan daur ulang.</p></div>
+</div></div></section>
+
+<!-- Dashboard -->
+<section id="dashboard"><div class="wrap fade">
+<h2>Dashboard demo</h2><p class="lead">Pilih cara notifikasi sampah penuh: muncul langsung (real-time) atau dikumpulkan di tab terpisah.</p>
+<div class="app">
+<div class="ah"><b>Dashboard WASTIFY <span class="tag">Data simulasi</span></b>
+<div><small style="color:#9db6da;display:block;margin-bottom:4px">Mode notifikasi</small>
+<div class="seg"><button id="mRt" class="on" onclick="setMode('rt')">Real-time</button><button id="mTab" onclick="setMode('tab')">Tab terpisah</button></div></div></div>
+<div class="toolbar"><input type="search" id="searchDesa" placeholder="Cari desa..."><select id="filterStatus"><option value="all">Semua Status</option><option value="normal">Normal</option><option value="warning">Hampir Penuh</option><option value="full">Penuh</option></select></div>
+<div class="tabs"><button class="on" data-t="p1">Pantau</button><button data-t="p2">Notifikasi<span class="badge" id="bd" style="display:none">0</span></button><button data-t="p3">Jadwal angkut</button></div>
+<div class="pane on" id="p1"><div class="kpi"><div><b id="kTot">0</b><small>kg terkumpul</small></div><div><b id="kFull">0</b><small>perlu diangkut</small></div><div><b>6</b><small>titik aktif</small></div></div><div id="bins"></div></div>
+<div class="pane" id="p2"><div id="nl"></div></div>
+<div class="pane" id="p3"><div id="jl"></div></div>
+</div></div></section>
+
+<!-- Circular Economy -->
+<section style="background:var(--card)"><div class="wrap fade">
+<h2>Ekonomi sirkular</h2><p class="lead">Plastik kembali ke siklus produksi, bukan berakhir di TPA.</p>
+<div class="flow"><div>Sampah warga</div><span>→</span><div>Tempat sampah WASTIFY</div><span>→</span><div>Pengangkutan</div><span>→</span><div>Pemilahan</div><span>→</span><div>Daur ulang</div><span>↺</span><div>Produk baru</div></div>
+</div></section>
+
+<!-- Business Model -->
+<section id="bisnis"><div class="wrap fade">
+<h2>Model bisnis &amp; target dampak</h2><p class="lead">Target dan proyeksi, bukan klaim hasil yang sudah tercapai.</p>
+<div class="cols">
+<div class="bc"><h3>💼 Langganan layanan</h3><p>Biaya angkut terjadwal dari desa/kampung mitra.</p></div>
+<div class="bc"><h3>♻️ Hasil pilah</h3><p>Penjualan sampah terpilah ke mitra daur ulang.</p></div>
+<div class="bc"><h3>🤝 Kemitraan CSR</h3><p>Program lingkungan bersama perusahaan.</p></div>
+<div class="bc"><h3>🎯 Target dampak</h3><p>Mengurangi penumpukan, menaikkan efisiensi rute, menambah plastik terdaur ulang.</p></div>
+</div></div></section>
+
+<!-- Footer -->
+<footer id="kontak"><b>WASTIFY</b><br>Inovasi pengelolaan sampah berbasis teknologi dan ekonomi sirkular.<br>Product Idea Competition · Data nasional: SIPSN KLH 2026</footer>
+<div id="toasts"></div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// ===== DATA =====
+var bins=[["Kelurahan Grogol",42],["Kelurahan Krukut",67],["Kelurahan Limo",91],["Kelurahan Meruyung",35]].map(function(x){return{n:x[0],k:x[1],al:x[1]>=80,f:0}});
+
+// ===== GLOBAL STATE =====
+var mode="rt",log=[],unread=0,CAP=120;searchKeyword="";var statusFilter="all";
+
+// ===== UTILITIES =====
+function $(i){return document.getElementById(i)}
+function col(v){return v>=80?"var(--r)":v>=60?"var(--a)":"var(--b)"}
+function now(){return new Date().toLocaleTimeString("id-ID")}
+
+// ===== NOTIFICATIONS =====
+function setMode(m){mode=m;$("mRt").className=m=="rt"?"on":"";$("mTab").className=m=="tab"?"on":"";if(m=="tab")$("toasts").innerHTML=""}
+function toast(t){var d=document.createElement("div");d.className="toast";d.innerHTML="🔔 "+t;$("toasts").appendChild(d);setTimeout(function(){d.remove()},5000)}
+function note(t,ok){log.unshift({t:t,ok:ok,time:now()});if(log.length>30)log.pop();if(!ok){unread++;if(mode=="rt")toast(t)}}
+
+// ===== DASHBOARD =====
+function showTab(id){document.querySelectorAll(".pane").forEach(function(p){p.className="pane"+(p.id==id?" on":"")});document.querySelectorAll(".tabs button").forEach(function(b){b.className=b.dataset.t==id?"on":""});if(id=="p2")unread=0;render()}
+document.querySelectorAll(".tabs button").forEach(function(b){b.onclick=function(){showTab(b.dataset.t)}});
+function pick(i){bins[i].k=5;bins[i].al=false;bins[i].f=0;note(bins[i].n+" sudah diangkut",true);render()}
+function render(){
+ var tot=0,full=0,b="",j="";
+bins.forEach(function(x,i){if(searchKeyword&&!x.n.toLowerCase().includes(searchKeyword))return;if(statusFilter=="full"&&x.k<80)return;if(statusFilter=="warning"&&(x.k<50||x.k>=80))return;if(statusFilter=="normal"&&x.k>=50)return;var kg=Math.round(x.k*CAP/100);tot+=kg;
+  b+='<div class="bi"><div class="r"><span>'+x.n+'</span><span>'+x.k+'% · '+kg+' kg</span></div><div class="bar"><i style="width:'+x.k+'%;background:'+col(x.k)+'"></i></div></div>';
+  if(x.k>=80){full++;j+='<div class="jd"><span><b>'+x.n+'</b><br><small>Angkut besok 07.00 · '+x.k+'%</small></span><button onclick="pick('+i+')">Tandai terangkut</button></div>'}});
+ $("bins").innerHTML=b;$("jl").innerHTML=j||'<div class="empty">Belum ada pengangkutan yang perlu dijadwalkan.</div>';
+ $("nl").innerHTML=log.length?log.map(function(l){return '<div class="nt'+(l.ok?' ok':'')+'"><span>'+(l.ok?'✅':'🔔')+'</span><div>'+l.t+'<small>'+l.time+'</small></div></div>'}).join(""):'<div class="empty">Belum ada notifikasi. Tunggu tempat sampah mencapai 80%.</div>';
+ $("kTot").textContent=tot;$("kFull").textContent=full;
+ var bd=$("bd");bd.textContent=unread;bd.style.display=unread?"inline":"none";
+ var h=bins[2];$("gt").style.height=h.k+"%";$("gt").style.background=h.k>=80?"var(--r)":"";$("gp").textContent=h.k+"%";$("gw").textContent=Math.round(h.k*CAP/100)+" kg dari "+CAP+" kg";
+}
+
+// ===== SENSOR SIMULATION =====
+function tick(){bins.forEach(function(x,i){
+ if(x.k<100)x.k=Math.min(100,x.k+Math.floor(Math.random()*9));
+ if(x.k>=80&&!x.al){x.al=true;note(x.n+" penuh "+x.k+"%. Segera jadwalkan pengangkutan.",false)}
+ if(x.k>=100){x.f++;if(x.f>3)pick(i)}});render()}
+
+ // ===== INITIALIZATION =====
+render();
+document.getElementById("searchDesa").addEventListener("input",function(){searchKeyword=this.value.toLowerCase();render();});
+document.getElementById("filterStatus").addEventListener("change",function(){statusFilter=this.value;render();});
+setInterval(tick,2500);
+
+// ===== SCROLL ANIMATION =====
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");e.target.querySelectorAll("[data-w]").forEach(function(i){i.style.width=i.dataset.w+"%"})}})},{threshold:.15});
+document.querySelectorAll(".fade").forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
