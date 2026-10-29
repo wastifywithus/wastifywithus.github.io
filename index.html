@@ -137,6 +137,19 @@ h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800}
 /* Footer */
 footer{background:var(--n);color:#9db6da;padding:30px 20px;text-align:center;font-size:.86rem}footer b{color:#fff;font-size:1.15rem}
 
+/* Splash Screen */
+#splash{position:fixed;inset:0;z-index:100;background:var(--n);display:grid;place-items:center;transition:opacity .6s,visibility .6s}
+#splash.hide{opacity:0;visibility:hidden}
+.sp{text-align:center}
+.sp img{width:110px;height:auto;display:block;margin:0 auto;animation:pop .7s cubic-bezier(.2,1.4,.4,1) both}
+.sp .nm{font-size:2rem;font-weight:800;letter-spacing:.12em;color:#fff;margin-top:14px;animation:up .6s .4s both}
+.sp .nm em{color:var(--s);font-style:normal}
+.sp .ln{width:140px;height:4px;border-radius:4px;background:#1b3e6d;margin:18px auto 0;overflow:hidden}
+.sp .ln i{display:block;height:100%;width:0;background:var(--s);animation:ld 1.6s .2s ease forwards}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+@keyframes up{from{transform:translateY(14px);opacity:0}}
+@keyframes ld{to{width:100%}}
+  
 /* Animation */
 .fade{opacity:0;transform:translateY(16px);transition:.6s}.fade.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
@@ -145,6 +158,14 @@ footer{background:var(--n);color:#9db6da;padding:30px 20px;text-align:center;fon
 
 <!-- ===== BODY ===== -->
 <body>
+
+<!-- Splash Screen -->
+<div id="splash"><div class="sp">
+<img src="Wastify Logo.png" alt="WASTIFY">
+<div class="nm">WASTI<em>FY</em></div>
+<div class="ln"><i></i></div>
+</div></div>
+  
 <!-- Navigation -->
 <nav><div class="wrap"><a class="logo" href="#top"><img src="Wastify Logo.png" alt="Logo Wastify"><span>WASTI<em>FY</em></span></a>
 <div class="menu"><a href="#fakta">Fakta</a><a href="#solusi">Solusi</a><a href="#cara">Cara Kerja</a><a href="#dashboard">Dashboard</a><a href="#bisnis">Bisnis</a></div>
@@ -273,6 +294,9 @@ document.getElementById("searchDesa").addEventListener("input",function(){search
 document.getElementById("filterStatus").addEventListener("change",function(){statusFilter=this.value;render();});
 setInterval(tick,2500);
 
+// ===== SPLASH SCREEN =====
+window.addEventListener("load",function(){setTimeout(function(){document.getElementById("splash").classList.add("hide")},1800);});
+  
 // ===== SCROLL ANIMATION =====
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");e.target.querySelectorAll("[data-w]").forEach(function(i){i.style.width=i.dataset.w+"%"})}})},{threshold:.15});
 document.querySelectorAll(".fade").forEach(function(el){io.observe(el)});
